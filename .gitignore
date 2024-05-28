@@ -1,0 +1,9 @@
+immich/library/
+immich/postgres/
+
+jellyfin/cache/
+jellyfin/config/
+jellyfin/media/*
+
+nextcloud/config/
+nextcloud/data/
