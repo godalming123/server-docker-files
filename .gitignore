@@ -3,7 +3,7 @@ immich/postgres/
 
 jellyfin/cache/
 jellyfin/config/
-jellyfin/media/*
+jellyfin/media/
 
 nextcloud/config/
 nextcloud/data/

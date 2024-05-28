@@ -14,6 +14,7 @@ A collection of docker compose files that make it easy to setup a self-hosted ho
 ## 2. Download the code
 ```sh
 git clone https://github.com/godalming123/server-docker-files.git
+cd server-docker-files
 ```
 
 ### 3. Edit the immich DB password
@@ -24,22 +25,25 @@ DB_USERNAME=postgres
 DB_DATABASE_NAME=immich
 ```
 
-### 4. Startup the containers
+### 4. Upload your media to jellyfin
+Create a `jellyfin/media` folder, and copy your media files there. If possible, try to convert media files to [a codec that is supported on all of the devices that you use](https://jellyfin.org/docs/general/clients/codec-support/) before you upload them. This means that the server does not have to convert the files to a codec that the client supports as the client is consuming them, which saves CPU, and can fix frame dropping issues. VLC media player can be used to do these conversions, although each file has to be manually converted.
+
+### 5. Startup the containers
 ```sh
 docker compose -dp immich
 docker compose -dp jellyfin
 docker compose -dp nextcloud
 ```
 
-### 5. Setup the containers
+### 6. Setup the containers
 #### Immich
 Go to `http://THE.SERVERS.IP.ADDRESS:2283/`, and setup your account. Immich has some AI features enabled out of the box that only ever run on the server, where the data is *never* sent to a third party. Howerver, this cuases the server to use 100% CPU until it has processed all of the photos that you upload when you import your photos and videos. These AI features can be disabled by pressing Administration -> Jobs -> Stop job.
 #### Nextcloud
 Go to `https://THE.SERVERS.IP.ADDRESS:1234/`, click through the self-signed certificate warning, and setup your account. Use the SQLite database (I cannot get a different DB to work).
 #### Jellyfin
-Go to `http://THE.SERVERS.IP.ADDRESS:8096/web/index.html#!/wizardstart.html` and setup your account. When importing media, if possible, try to convert media files to a codec that is supported on all of the devices that you use before you upload them. This means that the server does not have to convert the files to a codec that the client supports as the client is consuming them, which saves CPU and can fix frame dropping issues. VLC media player can be used to do these conversions, although each file has to be manually converted.
+Go to `http://THE.SERVERS.IP.ADDRESS:8096/web/index.html#!/wizardstart.html` and setup your account.
 
-### 6. Setup automatic updates for your OS
+### 7. Setup automatic updates for your OS
 Here is the command for debian:
 ```sh
 sudo apt install unattended-upgrades
