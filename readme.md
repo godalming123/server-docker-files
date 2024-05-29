@@ -4,7 +4,7 @@ A collection of docker compose files that make it easy to setup a self-hosted ho
 # TODO
 - Allow the usage of nextcloud with mySQL and mariaDB for more performance then SQLite
 - Setup automatic backup and update for docker containers
-- Add the option to not setup some of the apps
+- Add the option to not setup some of the containers
 - Add the option to only allow certain twingate users access to certain apps
 
 # Usage
@@ -18,7 +18,7 @@ git clone https://github.com/godalming123/server-docker-files.git
 cd server-docker-files
 ```
 
-## 3. Setup trusted SSL certificates with duckDNS and caddy
+## 3. Setup encryption with trusted SSL certificates using duckDNS and caddy
 1. Go to https://duckdns.org, and create an account with one domain for your server which has the `current_ip` option set to the IP address of your server
 2. Edit `caddy/Caddyfile`, and enter your duckDNS token (can be found on the duckDNS website when you are signed in), and your domain
 
