@@ -5,17 +5,17 @@
   }
 }
 
-immich.YUOR_DUCKDNS_DOMAIN.duckdns.org {
+immich.YOUR_DUCKDNS_DOMAIN.duckdns.org {
   import duck
   reverse_proxy :2283
 }
 
-jellyfin.YUOR_DUCKDNS_DOMAIN.duckdns.org {
+jellyfin.YOUR_DUCKDNS_DOMAIN.duckdns.org {
   import duck
   reverse_proxy :8096
 }
 
-nextcloud.YUOR_DUCKDNS_DOMAIN.duckdns.org {
+nextcloud.YOUR_DUCKDNS_DOMAIN.duckdns.org {
   import duck
   reverse_proxy :1234
 }
