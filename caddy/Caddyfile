@@ -1,0 +1,21 @@
+(duck) {
+  tls {
+    dns duckdns ADD_YOUR_DUCKDNS_TOKEN_HERE
+    key_type rsa2048
+  }
+}
+
+immich.YUOR_DUCKDNS_DOMAIN.duckdns.org {
+  import duck
+  reverse_proxy :2283
+}
+
+jellyfin.YUOR_DUCKDNS_DOMAIN.duckdns.org {
+  import duck
+  reverse_proxy :8096
+}
+
+nextcloud.YUOR_DUCKDNS_DOMAIN.duckdns.org {
+  import duck
+  reverse_proxy :1234
+}

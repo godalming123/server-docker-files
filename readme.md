@@ -4,7 +4,8 @@ A collection of docker compose files that make it easy to setup a self-hosted ho
 # TODO
 - Allow the usage of nextcloud with mySQL and mariaDB for more performance
 - Setup automatic backup and update for docker containers
-- Setup caddy with duckDNS and optionally twingate so that the server is actually secure, and can be accessed from anywhere
+- Optionally setup twingate so that the server can be accessed from anywhere
+- Add the option for the user to not have some of the apps
 
 # Usage
 
@@ -16,6 +17,10 @@ A collection of docker compose files that make it easy to setup a self-hosted ho
 git clone https://github.com/godalming123/server-docker-files.git
 cd server-docker-files
 ```
+
+### 3. Setup trusted SSL certificates with duckDNS and caddy
+1. Go to https://duckdns.org, and create an account with one domain for your server which has the `current_ip` option set to the IP address of your server
+2. Edit `caddy/Caddyfile`, and enter your duckDNS token (can be found on the duckDNS website when you are signed in), and your domain
 
 ### 3. Edit the immich DB password
 `immich/.env`
@@ -33,15 +38,16 @@ Create a `jellyfin/media` folder, and copy your media files there. If possible, 
 sudo docker compose --project-directory immich up -d
 sudo docker compose --project-directory jellyfin up -d
 sudo docker compose --project-directory nextcloud up -d
+sudo docker compose --project-directory caddy up -d
 ```
 
 ### 6. Setup the containers
 #### Immich
-Go to `http://THE.SERVERS.IP.ADDRESS:2283/`, and setup your account. Immich has some AI features enabled out of the box that only ever run on the server, where the data is *never* sent to a third party. Howerver, this cuases the server to use 100% CPU until it has processed all of the photos that you upload when you import your photos and videos. These AI features can be disabled by pressing Administration -> Jobs -> Stop job.
+Go to `https://imich.YOUR_DUCKDNS_DOMAIN.org/`, and setup your account. Immich has some AI features enabled out of the box that only ever run on the server, where the data is *never* sent to a third party. Howerver, this cuases the server to use 100% CPU until it has processed all of the photos that you upload when you import your photos and videos. These AI features can be disabled by pressing Administration -> Jobs -> Stop job.
 #### Nextcloud
-Go to `https://THE.SERVERS.IP.ADDRESS:1234/`, click through the self-signed certificate warning, and setup your account. Use the SQLite database (I cannot get a different DB to work).
+Go to `https://nextcloud.YOUR_DUCKDNS_DOMAIN.org/`, and setup your account. Use the SQLite database (I cannot get any other DB to work).
 #### Jellyfin
-Go to `http://THE.SERVERS.IP.ADDRESS:8096/web/index.html#!/wizardstart.html` and setup your account.
+Go to `http://jellyfin.YOUR_DUCKDNS_DOMAIN.org/web/index.html#!/wizardstart.html` and setup your account.
 
 ### 7. Setup automatic updates for your OS
 Here is the command for debian:
