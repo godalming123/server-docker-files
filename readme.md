@@ -30,9 +30,9 @@ Create a `jellyfin/media` folder, and copy your media files there. If possible, 
 
 ### 5. Startup the containers
 ```sh
-docker compose -dp immich
-docker compose -dp jellyfin
-docker compose -dp nextcloud
+sudo docker compose --project-directory immich up -d
+sudo docker compose --project-directory jellyfin up -d
+sudo docker compose --project-directory nextcloud up -d
 ```
 
 ### 6. Setup the containers
