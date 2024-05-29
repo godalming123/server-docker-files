@@ -18,11 +18,11 @@ git clone https://github.com/godalming123/server-docker-files.git
 cd server-docker-files
 ```
 
-### 3. Setup trusted SSL certificates with duckDNS and caddy
+## 3. Setup trusted SSL certificates with duckDNS and caddy
 1. Go to https://duckdns.org, and create an account with one domain for your server which has the `current_ip` option set to the IP address of your server
 2. Edit `caddy/Caddyfile`, and enter your duckDNS token (can be found on the duckDNS website when you are signed in), and your domain
 
-### 3. Edit the immich DB password
+## 4. Edit the immich DB password
 `immich/.env`
 ```
 DB_PASSWORD=postgres # CHANGE THIS VALUE TO A RANDOM STRING OF LETTERS FOR SECURITY
@@ -30,10 +30,10 @@ DB_USERNAME=postgres
 DB_DATABASE_NAME=immich
 ```
 
-### 4. Upload your media to jellyfin
+## 5. Upload your media to jellyfin
 Create a `jellyfin/media` folder, and copy your media files there. If possible, try to convert media files to [a codec that is supported on all of the devices that you use](https://jellyfin.org/docs/general/clients/codec-support/) before you upload them. This means that the server does not have to convert the files to a codec that the client supports as the client is consuming them, which saves CPU, and can fix frame dropping issues. VLC media player can be used to do these conversions, although each file has to be manually converted.
 
-### 5. Startup the containers
+## 6. Startup the containers
 ```sh
 sudo docker compose --project-directory immich up -d
 sudo docker compose --project-directory jellyfin up -d
@@ -41,15 +41,15 @@ sudo docker compose --project-directory nextcloud up -d
 sudo docker compose --project-directory caddy up -d
 ```
 
-### 6. Setup the containers
-#### Immich
+## 7. Setup the containers
+### Immich
 Go to `https://imich.YOUR_DUCKDNS_DOMAIN.org/`, and setup your account. Immich has some AI features enabled out of the box that only ever run on the server, where the data is *never* sent to a third party. Howerver, this cuases the server to use 100% CPU until it has processed all of the photos that you upload when you import your photos and videos. These AI features can be disabled by pressing Administration -> Jobs -> Stop job.
-#### Nextcloud
+### Nextcloud
 Go to `https://nextcloud.YOUR_DUCKDNS_DOMAIN.org/`, and setup your account. Use the SQLite database (I cannot get any other DB to work).
-#### Jellyfin
+### Jellyfin
 Go to `http://jellyfin.YOUR_DUCKDNS_DOMAIN.org/web/index.html#!/wizardstart.html` and setup your account.
 
-### 7. Setup automatic updates for your OS
+## 8. Setup automatic updates for your OS
 Here is the command for debian:
 ```sh
 sudo apt install unattended-upgrades
