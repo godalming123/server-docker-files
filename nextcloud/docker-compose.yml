@@ -1,15 +1,22 @@
 name: nextcloud
 services:
-  nextcloud:
-    image: lscr.io/linuxserver/nextcloud:latest
-    container_name: nextcloud
-    environment:
-      - PUID=1000
-      - PGID=1000
-      - TZ=Etc/GMT
+  db:
+    image: mariadb:10.6
+    restart: always
+    command: --transaction-isolation=READ-COMMITTED --log-bin=binlog --binlog-format=ROW
     volumes:
-      - ./config:/config
-      - ./data:/data
+      - ./db:/var/lib/mysql
+    env_file:
+      - .env
+
+  app:
+    image: nextcloud
+    restart: always
     ports:
-     - 1234:80
-    restart: unless-stopped
+      - 1234:80
+    links:
+      - db
+    volumes:
+      - ./nextcloud:/var/www/html
+    env_file:
+      - .env

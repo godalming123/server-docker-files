@@ -2,7 +2,6 @@
 A collection of docker compose files that make it easy to setup a self-hosted home server with [Immich](https://immich.app/), [Jellyfin](https://jellyfin.org/), and [Nextcloud](https://nextcloud.com/).
 
 # TODO
-- Allow the usage of nextcloud with mySQL and mariaDB for more performance then SQLite
 - Setup automatic backup and update for docker containers
 - Add the option to not setup some of the containers
 - Add the option to only allow certain twingate users access to certain apps
@@ -24,10 +23,23 @@ cd server-docker-files
 
 ## 4. Edit the immich DB password
 `immich/.env`
-```
+```env
 DB_PASSWORD=postgres # CHANGE THIS VALUE TO A RANDOM STRING OF LETTERS FOR SECURITY
 DB_USERNAME=postgres
 DB_DATABASE_NAME=immich
+```
+
+## 5. Edit the nextcloud DB password
+`nextcloud/.env`
+```env
+# CHANGE THESE VALUES TO A RANDOM STRING OF LETTERS FOR SECURITY
+MYSQL_ROOT_PASSWORD=CHANGE_THE_ROOT_PASSWORD
+MYSQL_PASSWORD=CHANGE_THE_PASSWORD
+
+
+MYSQL_DATABASE=nextcloud
+MYSQL_USER=nextcloud
+MYSQL_HOST=db
 ```
 
 ## 5. Upload your media to jellyfin
@@ -46,7 +58,7 @@ sudo docker compose --project-directory caddy up -d
 ### Immich
 Go to `https://imich.YOUR_DUCKDNS_DOMAIN.org/`, and setup your account. Immich has some AI features enabled out of the box that only ever run on the server, where the data is *never* sent to a third party. Howerver, this cuases the server to use 100% CPU until it has processed all of the photos that you upload when you import your photos and videos. These AI features can be disabled by pressing Administration -> Jobs -> Stop job.
 ### Nextcloud
-Go to `https://nextcloud.YOUR_DUCKDNS_DOMAIN.org/`, and setup your account. Use the SQLite database (I cannot get any other DB to work).
+Go to `https://nextcloud.YOUR_DUCKDNS_DOMAIN.org/`, and setup your account.
 ### Jellyfin
 Go to `http://jellyfin.YOUR_DUCKDNS_DOMAIN.org/web/index.html#!/wizardstart.html` and setup your account.
 

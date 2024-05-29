@@ -5,5 +5,5 @@ jellyfin/cache/
 jellyfin/config/
 jellyfin/media/
 
-nextcloud/config/
-nextcloud/data/
+nextcloud/nextcloud/
+nextcloud/db/
