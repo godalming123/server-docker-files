@@ -2,10 +2,10 @@
 A collection of docker compose files that make it easy to setup a self-hosted home server with [Immich](https://immich.app/), [Jellyfin](https://jellyfin.org/), and [Nextcloud](https://nextcloud.com/).
 
 # TODO
-- Allow the usage of nextcloud with mySQL and mariaDB for more performance
+- Allow the usage of nextcloud with mySQL and mariaDB for more performance then SQLite
 - Setup automatic backup and update for docker containers
-- Optionally setup twingate so that the server can be accessed from anywhere
-- Add the option for the user to not have some of the apps
+- Add the option to not setup some of the apps
+- Add the option to only allow certain twingate users access to certain apps
 
 # Usage
 
@@ -56,3 +56,26 @@ sudo apt install unattended-upgrades
 sudo systemctl enable --now unattended-upgrades
 sudo dpkg-reconfigure -plow unattended-upgrades
 ```
+
+## 9. OPTIONAL: Setup twingate so that the server can be accessed form outside your WiFi network
+Go to https://auth.twingate.com/signup-v2, and:
+1. Create a twingate account
+2. Setup a resoarce (with your server's IP address as a URL) and connector for your server
+3. Edit `twingate/docker-compose.yml` with the following contents:
+   ```yaml
+   name: twingate
+   services:
+     twingate_connector:
+       container_name: twingate_connector
+       image: twingate/connector:latest
+       environment:
+         - TWINGATE_NETWORK=<ADD_YOUR_NETWORK_NAME_HERE>
+         - TWINGATE_ACCESS_TOKEN=<ADD_YOUR_ACCESS_TOKEN_HERE>
+         - TWINGATE_REFRESH_TOKEN=<ADD_YOUR_REFRESH_TOEKN_HERE>
+       restart: unless-stopped
+   ```
+4. Run docker compose up
+   ```sh
+   sudo docker compose --project-directory twingate up -d
+   ```
+5. Install twingate and sign in on the client that you want to access the network with
