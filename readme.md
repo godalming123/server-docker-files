@@ -57,7 +57,7 @@ sudo systemctl enable --now unattended-upgrades
 sudo dpkg-reconfigure -plow unattended-upgrades
 ```
 
-## 9. OPTIONAL: Setup twingate so that the server can be accessed form outside your WiFi network
+## 9. OPTIONAL: Setup twingate so that the server can be accessed from outside your WiFi network
 Go to https://auth.twingate.com/signup-v2, and:
 1. Create a twingate account
 2. Setup a resoarce (with your server's IP address as a URL) and connector for your server
