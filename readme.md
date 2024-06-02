@@ -29,32 +29,29 @@ DB_USERNAME=postgres
 DB_DATABASE_NAME=immich
 ```
 
-## 5. Edit the nextcloud DB password
+## 5. Edit the nextcloud `.env` file
 `nextcloud/.env`
 ```env
-# CHANGE THESE VALUES TO A RANDOM STRING OF LETTERS FOR SECURITY
-MYSQL_ROOT_PASSWORD=CHANGE_THE_ROOT_PASSWORD
-MYSQL_PASSWORD=CHANGE_THE_PASSWORD
-
-
+MYSQL_ROOT_PASSWORD=<CHANGE_THE_ROOT_PASSWORD_TO_A_RANDOM_STRING>
+MYSQL_PASSWORD=<CHANGE_THE_PASSWORD_TO_A_RANDOM_STRING>
 MYSQL_DATABASE=nextcloud
 MYSQL_USER=nextcloud
 MYSQL_HOST=db
+OVERWRITECLIURL="https://nextcloud.<YOUR_DUCKDNS_DOMAIN>.duckdns.org"
 ```
 
-## 5. Upload your media to jellyfin
+## 6. Upload your media to jellyfin
 Create a `jellyfin/media` folder, and copy your media files there. If possible, try to convert media files to [a codec that is supported on all of the devices that you use](https://jellyfin.org/docs/general/clients/codec-support/) before you upload them. This means that the server does not have to convert the files to a codec that the client supports as the client is consuming them, which saves CPU, and can fix frame dropping issues. VLC media player can be used to do these conversions, although each file has to be manually converted.
 
-## 6. Startup the containers
+## 7. Startup the containers
 ```sh
 sudo docker compose --project-directory immich up -d
 sudo docker compose --project-directory jellyfin up -d
 sudo docker compose --project-directory nextcloud up -d
-sudo docker volume create data
 sudo docker compose --project-directory caddy up -d
 ```
 
-## 7. Setup the containers
+## 8. Setup the containers
 ### Immich
 Go to `https://imich.YOUR_DUCKDNS_DOMAIN.org/`, and setup your account. Immich has some AI features enabled out of the box that only ever run on the server, where the data is *never* sent to a third party. Howerver, this cuases the server to use 100% CPU until it has processed all of the photos that you upload when you import your photos and videos. These AI features can be disabled by pressing Administration -> Jobs -> Stop job.
 ### Nextcloud
@@ -62,7 +59,7 @@ Go to `https://nextcloud.YOUR_DUCKDNS_DOMAIN.org/`, and setup your account.
 ### Jellyfin
 Go to `http://jellyfin.YOUR_DUCKDNS_DOMAIN.org/web/index.html#!/wizardstart.html` and setup your account.
 
-## 8. Setup automatic updates for your OS
+## 9. Setup automatic updates for your OS
 Here is the command for debian:
 ```sh
 sudo apt install unattended-upgrades
@@ -70,7 +67,7 @@ sudo systemctl enable --now unattended-upgrades
 sudo dpkg-reconfigure -plow unattended-upgrades
 ```
 
-## 9. OPTIONAL: Setup twingate so that the server can be accessed from outside your WiFi network
+## 10. OPTIONAL: Setup twingate so that the server can be accessed from outside your WiFi network
 Go to https://auth.twingate.com/signup-v2, and:
 1. Create a twingate account
 2. Setup a resoarce (with your server's IP address as a URL) and connector for your server

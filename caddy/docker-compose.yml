@@ -6,9 +6,5 @@ services:
     network_mode: host
     volumes:
       - ./Caddyfile:/etc/caddy/Caddyfile
-      - data:/data
-      - config:/config
-volumes:
-  data:
-    external: true
-  config:
+      - ./data:/data
+      - ./config:/config

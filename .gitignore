@@ -1,3 +1,6 @@
+caddy/config/
+caddy/data/
+
 immich/library/
 immich/postgres/
 
