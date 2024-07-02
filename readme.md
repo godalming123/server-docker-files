@@ -1,7 +1,7 @@
 # Server docker files
 A collection of docker compose files that make it easy to setup a self-hosted home server with [Immich](https://immich.app/), [Jellyfin](https://jellyfin.org/), and [Nextcloud](https://nextcloud.com/).
 
-# TODO
+# To do
 - Setup automatic backup and update for docker containers
 - Add the option to not setup some of the containers
 - Add the option to only allow certain twingate users access to certain apps
@@ -38,6 +38,7 @@ MYSQL_DATABASE=nextcloud
 MYSQL_USER=nextcloud
 MYSQL_HOST=db
 OVERWRITECLIURL="https://nextcloud.<YOUR_DUCKDNS_DOMAIN>.duckdns.org"
+OVERWRITEPROTOCOL="https"
 ```
 
 ## 6. Upload your media to jellyfin
