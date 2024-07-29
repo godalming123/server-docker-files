@@ -1,7 +1,9 @@
 # Server docker files
+
 A collection of docker compose files that make it easy to setup a self-hosted home server with [Immich](https://immich.app/), [Jellyfin](https://jellyfin.org/), and [Nextcloud](https://nextcloud.com/).
 
 # To do
+
 - Setup automatic backup and update for docker containers
 - Add the option to not setup some of the containers
 - Add the option to only allow certain twingate users access to certain apps
@@ -90,3 +92,11 @@ Go to https://auth.twingate.com/signup-v2, and:
    sudo docker compose --project-directory twingate up -d
    ```
 5. Install twingate and sign in on the client that you want to access the network with
+
+# 11. Update your docker compose containers
+To keep your docker compose containers updated, run the following commands from the folders with the docker compose file in:
+```sh
+sudo docker compose pull
+sudo docker compose up --force-recreate --build -d
+sudo docker image prune -f
+```
