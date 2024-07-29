@@ -97,6 +97,6 @@ Go to https://auth.twingate.com/signup-v2, and:
 To keep your docker compose containers updated, run the following commands from the folders with the docker compose file in:
 ```sh
 sudo docker compose pull
-sudo docker compose up --force-recreate --build -d
+sudo docker compose up --force-recreate -d
 sudo docker image prune -f
 ```
