@@ -8,6 +8,7 @@ A collection of docker compose files that make it easy to setup a self-hosted ho
 - Add the option to not setup some of the containers
 - Add the option to only allow certain twingate users access to certain apps
 - Switch from [an unofficial nextcloud image](https://hub.docker.com/_/nextcloud) to [the official nextcloud image](https://hub.docker.com/r/nextcloud/all-in-one), since the unofficial image [has vulnerabilities](https://hub.docker.com/_/nextcloud/tags)
+- Fix the `update.sh` script so that it works from any folder
 
 # Usage
 
@@ -125,10 +126,10 @@ Go to https://auth.twingate.com/signup-v2, and:
 
 ## 11. Update your docker compose containers
 
-To update every docker container, run the `update.sh` script.
+To update every docker container, run the `update.sh` script from the `server-docker-files` folder.
 
 <details>
-<summary>How to update individual docker containers individually</summary>
+<summary>How to update docker containers individually</summary>
 
 Run the following commands from the folders with the docker compose file in:
 
