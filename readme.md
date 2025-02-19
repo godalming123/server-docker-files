@@ -80,6 +80,16 @@ Go to `https://nextcloud.YOUR_DUCKDNS_DOMAIN.org/`, and setup your account.
 
 Go to `http://jellyfin.YOUR_DUCKDNS_DOMAIN.org/web/index.html#!/wizardstart.html` and setup your account.
 
+### Linkding
+
+Run the following command:
+
+```sh
+sudo docker compose exec linkding python manage.py createsuperuser
+```
+
+Then, go to `http://linkding.YOUR_DUCKDNS_DOMAIN.org/` to log in.
+
 ## 9. Setup automatic updates for your OS
 
 Here is the command for debian:
