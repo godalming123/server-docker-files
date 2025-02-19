@@ -62,6 +62,7 @@ Create a `jellyfin/media` folder, and copy your media files there. If possible, 
 sudo docker compose --project-directory immich up -d
 sudo docker compose --project-directory jellyfin up -d
 sudo docker compose --project-directory nextcloud up -d
+sudo docker compose --project-directory linkding up -d
 sudo docker compose --project-directory caddy up -d
 ```
 

@@ -19,3 +19,8 @@ nextcloud.YOUR_DUCKDNS_DOMAIN.duckdns.org {
   import duck
   reverse_proxy :1234
 }
+
+linkding.YOUR_DUCKDNS_DOMAIN.duckdns.org {
+  import duck
+  reverse_proxy :9090
+}
