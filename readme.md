@@ -124,15 +124,13 @@ Go to https://auth.twingate.com/signup-v2, and:
    sudo docker compose --project-directory twingate up -d
    ```
 5. Install twingate and sign in on the client that you want to access the network with
-6. Add twingate to the `update.sh` script:
+6. Add twingate to the `run-compose-command-for-every-container.sh` script:
    ```diff
-   sudo docker compose --project-directory nextcloud pull
-   sudo docker compose --project-directory nextcloud up --force-recreate -d
-
-   +sudo docker compose --project-directory twingate pull
-   +sudo docker compose --project-directory twingate up --force-recreate -d
-   +
-   sudo docker image prune -f
+   sudo docker compose --project-directory caddy "$@"
+   sudo docker compose --project-directory immich "$@"
+   sudo docker compose --project-directory jellyfin "$@"
+   sudo docker compose --project-directory nextcloud "$@"
+   +sudo docker compose --project-directory twingate "$@"
    ```
 
 ## 11. Update your docker compose containers
